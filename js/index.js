@@ -30,7 +30,7 @@ document.getElementById("year").innerHTML = new Date().getFullYear();
 
 //gallery
 
-const url = "/.netlify/functions/cloudinary";
+const url = "/.netlify/functions/fetchImages";
 // const url = "/";
 const perPage = 10; // number of results per page
 let page = ""; // cursor for pagination, empty string for the first page
