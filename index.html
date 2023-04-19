@@ -12,23 +12,14 @@
       href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
       rel="stylesheet"
     />
-    <script
-      src="https://cdn.jsdelivr.net/npm/swiffy-slider@1.6.0/dist/js/swiffy-slider.min.js"
-      crossorigin="anonymous"
-      defer
-    ></script>
-    <script
-      src="https://unpkg.com/smoothscroll-polyfill/dist/smoothscroll.min.js"
-      crossorigin="anonymous"
-      defer
-    ></script>
     <link
-      href="https://cdn.jsdelivr.net/npm/swiffy-slider@1.6.0/dist/css/swiffy-slider.min.css"
       rel="stylesheet"
-      crossorigin="anonymous"
+      href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css"
     />
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
   </head>
-  <body>
+  <body id="body">
     <header>
       <div class="logo">
         <h1>DMR Contractors</h1>
@@ -117,50 +108,37 @@
       </ul>
       <nav class="links">
         <ul>
-          <li>Home</li>
-          <li>About Us</li>
-          <li>What We Do</li>
-          <li>Gallery</li>
-          <li>Contact Us</li>
+          <li data-target="body">Home</li>
+          <li data-target="about">About Us</li>
+          <li data-target="what">What We Do</li>
+          <li data-target="gallery">Gallery</li>
+          <li data-target="contact">Contact Us</li>
         </ul>
       </nav>
     </header>
     <section class="landing">
       <div class="bg-block"></div>
       <div class="container">
-        <div
-          class="swiffy-slider slider-nav-autoplay slider-nav-autopause slider-nav-chevron slider-nav-visible slider-nav-animation slider-nav-animation-fadein slider-nav-nodelay slider-item-ratio"
-          data-slider-nav-autoplay-interval="5000"
-        >
-          <ul class="slider-container">
-            <li>
-              <img src="./images/home.jpeg" />
-            </li>
-            <li>
-              <img src="https://source.unsplash.com/nKAglN6HBH8/1600x900" />
-            </li>
-            <li>
-              <img src="./images/home.jpeg" />
-            </li>
-            <li>
-              <img src="https://source.unsplash.com/E9ZwWcMGzj8/1600x900" />
-            </li>
-          </ul>
-
-          <button type="button" class="slider-nav"></button>
-          <button type="button" class="slider-nav slider-nav-next"></button>
-
-          <div class="slider-indicators slider-indicators-square">
-            <button class="active"></button>
-            <button></button>
-            <button></button>
-            <button></button>
+        <div class="swiper">
+          <div class="swiper-wrapper">
+            <div class="swiper-slide">
+              <img src="./images/home.jpeg" alt="home" srcset="" />
+            </div>
+            <div class="swiper-slide">
+              <img src="./images/i1.jpg" alt="home" srcset="" />
+            </div>
+            <div class="swiper-slide">
+              <img src="./images/home.jpeg" alt="home" srcset="" />
+            </div>
+            <div class="swiper-slide">
+              <img src="./images/home.jpeg" alt="home" srcset="" />
+            </div>
           </div>
         </div>
         <div class="content">
           <h1>Building your future, one brick at a time</h1>
           <p>Where comfort and style come together in every room</p>
-          <button class="cta">
+          <button class="cta" id="cta">
             LEARN MORE
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -181,9 +159,13 @@
             </svg>
           </button>
         </div>
+
+        <div class="swiper-button-prev swiper-nav"></div>
+        <div class="swiper-button-next swiper-nav"></div>
+        <div class="swiper-pagination"></div>
       </div>
     </section>
-    <section class="about">
+    <section class="about" id="about">
       <img src="./images/home.jpeg" alt="house image" srcset="" />
       <div class="content">
         <h1 class="t-shadow">We are DMR Builders</h1>
@@ -204,7 +186,7 @@
         </p>
       </div>
     </section>
-    <section class="what">
+    <section class="what" id="what">
       <div class="title">
         <h1 class="t-shadow">What We Do</h1>
         <p>WE STRIVE TO DELIVER MODERN, HIGH QUALITY HOMES</p>
@@ -286,8 +268,132 @@
         </div>
       </div>
     </section>
-    <section class="gallery"></section>
-    <section class="contact">
+    <section class="gallery" id="gallery">
+      <h1 class="t-shadow">Gallery</h1>
+      <div class="imgs"></div>
+      <button type="button" class="more-btn">
+        Show More
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="icon icon-tabler icon-tabler-arrow-down"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          stroke-width="2"
+          stroke="currentColor"
+          fill="none"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+          <path d="M12 5l0 14"></path>
+          <path d="M18 13l-6 6"></path>
+          <path d="M6 13l6 6"></path>
+        </svg>
+      </button>
+
+      <div class="popup">
+        <span class="close">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            class="w-6 h-6"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M6 18L18 6M6 6l12 12"
+            />
+          </svg>
+        </span>
+        <div class="swiper">
+          <div class="swiper-wrapper">
+            <!-- <div class="swiper-slide">
+              <img
+                src="./images/home.jpeg"
+                alt="home"
+                srcset=""
+                loading="lazy"
+              />
+            </div> -->
+          </div>
+
+          <div class="swiper-nav-prev swiper-nav">
+            <div class="icons">
+              <svg
+                aria-hidden="true"
+                focusable="false"
+                data-prefix="fas"
+                data-icon="chevron-left"
+                role="img"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 320 512"
+              >
+                <path
+                  fill="currentColor"
+                  d="M34.52 239.03L228.87 44.69c9.37-9.37 24.57-9.37 33.94 0l22.67 22.67c9.36 9.36 9.37 24.52.04 33.9L131.49 256l154.02 154.75c9.34 9.38 9.32 24.54-.04 33.9l-22.67 22.67c-9.37 9.37-24.57 9.37-33.94 0L34.52 272.97c-9.37-9.37-9.37-24.57 0-33.94z"
+                ></path>
+              </svg>
+              <svg
+                aria-hidden="true"
+                focusable="false"
+                data-prefix="fas"
+                data-icon="chevron-left"
+                class="svg-inline--fa fa-chevron-left fa-w-10 icon"
+                role="img"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 320 512"
+              >
+                <path
+                  fill="currentColor"
+                  d="M34.52 239.03L228.87 44.69c9.37-9.37 24.57-9.37 33.94 0l22.67 22.67c9.36 9.36 9.37 24.52.04 33.9L131.49 256l154.02 154.75c9.34 9.38 9.32 24.54-.04 33.9l-22.67 22.67c-9.37 9.37-24.57 9.37-33.94 0L34.52 272.97c-9.37-9.37-9.37-24.57 0-33.94z"
+                ></path>
+              </svg>
+            </div>
+            <span>Prev</span>
+          </div>
+          <div class="swiper-nav-next swiper-nav">
+            <span>Next</span>
+            <div class="icons">
+              <svg
+                aria-hidden="true"
+                focusable="false"
+                data-prefix="fas"
+                data-icon="chevron-right"
+                class="svg-inline--fa fa-chevron-right fa-w-10 icon"
+                role="img"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 320 512"
+              >
+                <path
+                  fill="currentColor"
+                  d="M285.476 272.971L91.132 467.314c-9.373 9.373-24.569 9.373-33.941 0l-22.667-22.667c-9.357-9.357-9.375-24.522-.04-33.901L188.505 256 34.484 101.255c-9.335-9.379-9.317-24.544.04-33.901l22.667-22.667c9.373-9.373 24.569-9.373 33.941 0L285.475 239.03c9.373 9.372 9.373 24.568.001 33.941z"
+                ></path>
+              </svg>
+              <svg
+                aria-hidden="true"
+                focusable="false"
+                data-prefix="fas"
+                data-icon="chevron-right"
+                class="svg-inline--fa fa-chevron-right fa-w-10 icon"
+                role="img"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 320 512"
+              >
+                <path
+                  fill="currentColor"
+                  d="M285.476 272.971L91.132 467.314c-9.373 9.373-24.569 9.373-33.941 0l-22.667-22.667c-9.357-9.357-9.375-24.522-.04-33.901L188.505 256 34.484 101.255c-9.335-9.379-9.317-24.544.04-33.901l22.667-22.667c9.373-9.373 24.569-9.373 33.941 0L285.475 239.03c9.373 9.372 9.373 24.568.001 33.941z"
+                ></path>
+              </svg>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="contact" id="contact">
       <div class="left">
         <div class="title">
           <h1>Get In Touch With Us</h1>
@@ -363,11 +469,18 @@
           </div>
         </div>
       </div>
-      <form class="right">
+      <form
+        class="right"
+        target="_blank"
+        action="https://formsubmit.co/contact@yuvarajanbu.com"
+        method="POST"
+      >
+        <input type="hidden" name="_template" value="table" />
+
         <input type="text" name="name" placeholder="Your Name *" required />
         <input type="email" name="email" placeholder="Your Email" />
         <input type="text" name="phone" placeholder="Your Phone *" required />
-        <textarea name="msg" placeholder="Your Message"></textarea>
+        <textarea name="message" placeholder="Your Message"></textarea>
         <button type="submit">Send Message</button>
       </form>
     </section>

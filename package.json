@@ -1,5 +1,6 @@
 {
   "dependencies": {
-    "cloudinary": "^1.35.0"
+    "cloudinary": "^1.35.0",
+    "jsonwebtoken": "^9.0.0"
   }
 }

@@ -8,20 +8,15 @@ cloudinary.config({
 
 exports.handler = async (event, context) => {
   try {
-    const { next_cursor, limit } = JSON.parse(event.body);
-    const result = await cloudinary.api.resources({
-      resource_type: "image",
-      type: "upload",
-      // prefix: "test/", //folder
-      max_results: limit,
-      next_cursor: next_cursor,
-    });
+    const { imgName } = JSON.parse(event.body);
+    await cloudinary.uploader.destroy(imgName);
     return {
       statusCode: 200,
-      body: JSON.stringify(result),
+      body: JSON.stringify({ message: "Deleted SuccessFully" }),
     };
   } catch (error) {
     console.error(error);
+
     return {
       statusCode: 500,
       body: JSON.stringify({ message: "Internal server error" }),
