@@ -119,7 +119,6 @@ async function fetchImages() {
       },
       body: JSON.stringify({ next_cursor, limit }),
     });
-    console.log(response);
     const data = await response.json();
     if (!response.ok) throw new Error(data.message);
 
