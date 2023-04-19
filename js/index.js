@@ -103,8 +103,8 @@ closeBtn.addEventListener("click", () => {
   if (gSwiper) gSwiper.destroy();
 });
 
-// const url = "/.netlify/functions/fetchImages";
-const url = "http://localhost:3000/img";
+const url = "/.netlify/functions/fetchImages";
+// const url = "http://localhost:3000/img";
 const limit = 12; // number of results per page
 const cloudName = "xander-ecommerce";
 let page = 0; // cursor for pagination, empty string for the first page

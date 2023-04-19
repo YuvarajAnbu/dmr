@@ -1,10 +1,10 @@
-// const loginUrl = "/.netlify/functions/login";
-// const fetchUrl = "/.netlify/functions/fetchImages";
-// const deleteUrl = "/.netlify/functions/deleteImages";
+const loginUrl = "/.netlify/functions/login";
+const fetchUrl = "/.netlify/functions/fetchImages";
+const deleteUrl = "/.netlify/functions/deleteImages";
 
-const loginUrl = "http://localhost:3000/login";
-const fetchUrl = "http://localhost:3000/img";
-const deleteUrl = "http://localhost:3000/delete";
+// const loginUrl = "http://localhost:3000/login";
+// const fetchUrl = "http://localhost:3000/img";
+// const deleteUrl = "http://localhost:3000/delete";
 
 const limit = 12; // number of results per page
 const cloudName = "xander-ecommerce";
