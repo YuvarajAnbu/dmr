@@ -5,6 +5,7 @@ const secretKey = process.env.SECRET_KEY;
 exports.handler = async (event, context) => {
   try {
     const { password, token } = JSON.parse(event.body);
+    console.log(password);
     if (password) {
       if (password === secretKey) {
         const token = jwt.sign({}, secretKey, { expiresIn: "24h" });
