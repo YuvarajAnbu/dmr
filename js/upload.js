@@ -1,10 +1,25 @@
-const loginUrl = "/.netlify/functions/login";
-const fetchUrl = "/.netlify/functions/fetchImages";
-const deleteUrl = "/.netlify/functions/deleteImages";
+const msg = document.getElementById("msg");
 
-// const loginUrl = "http://localhost:3000/login";
-// const fetchUrl = "http://localhost:3000/img";
-// const deleteUrl = "http://localhost:3000/delete";
+let msgTimeout;
+
+function showMsg(text, err) {
+  msg.innerText = text;
+  if (err) msg.classList.add("err");
+  else msg.classList.remove("err");
+  msg.classList.remove("hide");
+
+  msgTimeout = setTimeout(() => {
+    msg.classList.add("hide");
+  }, 1500);
+}
+
+// const loginUrl = "/.netlify/functions/login";
+// const fetchUrl = "/.netlify/functions/fetchImages";
+// const deleteUrl = "/.netlify/functions/deleteImages";
+
+const loginUrl = "http://localhost:3000/login";
+const fetchUrl = "http://localhost:3000/img";
+const deleteUrl = "http://localhost:3000/delete";
 
 const limit = 12; // number of results per page
 const cloudName = "xander-ecommerce";
@@ -13,29 +28,34 @@ let next_cursor = "";
 
 // verify cookie if exists
 async function verify() {
-  let cookie = document.cookie;
-  if (cookie) {
-    let token = cookie.split("; ").find((row) => row.startsWith("token"));
-    if (token) {
-      token = token.split("=")[1];
-      const response = await fetch(loginUrl, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ token }),
-      });
-      const data = await response.json();
+  try {
+    let cookie = document.cookie;
+    if (cookie) {
+      let token = cookie.split("; ").find((row) => row.startsWith("token"));
+      if (token) {
+        token = token.split("=")[1];
+        const response = await fetch(loginUrl, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ token }),
+        });
+        const data = await response.json();
+        if (!response.ok) throw new Error(data.message);
 
-      if (data.uploadPreset) {
-        populate(data.uploadPreset);
-        document.body.classList.add("logged");
+        if (data.uploadPreset) {
+          showMsg("Login Success!");
+          populate(data.uploadPreset);
+          document.body.classList.add("logged");
+        }
       }
     }
 
     document.body.classList.remove("loading");
-  } else {
+  } catch (err) {
     document.body.classList.remove("loading");
+    console.log(err);
   }
 }
 verify();
@@ -58,7 +78,7 @@ form.addEventListener("submit", async (e) => {
         body: JSON.stringify({ password }),
       });
       const data = await response.json();
-      console.log(data);
+      if (!response.ok) throw new Error(data.message);
 
       if (data.token) {
         document.cookie = `token=${
@@ -66,13 +86,15 @@ form.addEventListener("submit", async (e) => {
         }; SameSite=None; Secure; max-age=${60 * 60 * 24}`;
         populate(data.uploadPreset);
 
+        showMsg("Login Success!");
         document.body.classList.add("logged");
       }
     }
     button.disabled = false;
   } catch (err) {
     button.disabled = false;
-    console.log(err);
+    console.log(err, "jh");
+    showMsg(err.message, true);
   }
 });
 
@@ -115,11 +137,12 @@ function populate(uploadPreset) {
     },
     (err, result) => {
       if (!err && result && result.event === "success") {
-        console.log(result);
+        showMsg("Upload Success");
         resetImages();
       }
 
       if (err) {
+        showMsg("Something Went Wrong!");
         console.log(err);
       }
     }
@@ -171,10 +194,12 @@ popupBtn.addEventListener("click", async () => {
       body: JSON.stringify({ imgName }),
     });
     const data = await response.json();
-    console.log(data);
+    if (!response.ok) throw new Error(data.message);
     resetImages();
     closePopup();
+    showMsg("Image Deleted SuccessFully!");
   } catch (error) {
+    showMsg(error.message, true);
     console.log(error);
   }
 });
@@ -195,6 +220,7 @@ async function fetchImages() {
       body: JSON.stringify({ next_cursor, limit }),
     });
     const data = await response.json();
+    if (!response.ok) throw new Error(data.message);
 
     data.resources.forEach((el, i) => {
       //update gallery images

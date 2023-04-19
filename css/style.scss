@@ -784,6 +784,29 @@ footer {
   }
 }
 
+.msg {
+  padding: 15px 30px;
+  border-radius: 8px;
+  position: fixed;
+  top: 50px;
+  left: 50%;
+  transform: translateX(-50%);
+  transition: all 0.2s ease-in-out;
+  background-color: #137016;
+  color: white;
+  z-index: 999999999999999999999;
+
+  &.hide {
+    transition: 0s ease-in-out;
+    opacity: 0;
+    top: 0;
+  }
+
+  &.err {
+    background-color: rgb(184, 43, 43);
+  }
+}
+
 //upload
 .upload {
   padding: 50px var(--padding-sides);
@@ -820,7 +843,6 @@ footer {
       cursor: pointer;
 
       &:hover,
-      &:focus,
       &:disabled {
         opacity: 0.7;
       }
@@ -860,9 +882,8 @@ footer {
           cursor: pointer;
 
           &:hover,
-          &:focus,
           &:disabled {
-            background-color: red;
+            opacity: 0.7;
           }
         }
       }
@@ -934,7 +955,6 @@ footer {
             }
 
             &:hover,
-            &:focus,
             &:disabled {
               opacity: 0.6;
             }

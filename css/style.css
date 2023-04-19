@@ -689,6 +689,27 @@ footer a {
   }
 }
 
+.msg {
+  padding: 15px 30px;
+  border-radius: 8px;
+  position: fixed;
+  top: 50px;
+  left: 50%;
+  transform: translateX(-50%);
+  transition: all 0.2s ease-in-out;
+  background-color: #137016;
+  color: white;
+  z-index: 1000000000000000000000;
+}
+.msg.hide {
+  transition: 0s ease-in-out;
+  opacity: 0;
+  top: 0;
+}
+.msg.err {
+  background-color: rgb(184, 43, 43);
+}
+
 .upload {
   padding: 50px var(--padding-sides);
 }
@@ -719,7 +740,7 @@ footer a {
   color: white;
   cursor: pointer;
 }
-.upload .login button:hover, .upload .login button:focus, .upload .login button:disabled {
+.upload .login button:hover, .upload .login button:disabled {
   opacity: 0.7;
 }
 .upload .page {
@@ -751,8 +772,8 @@ footer a {
   color: white;
   cursor: pointer;
 }
-.upload .page .gallery .imgs button:hover, .upload .page .gallery .imgs button:focus, .upload .page .gallery .imgs button:disabled {
-  background-color: red;
+.upload .page .gallery .imgs button:hover, .upload .page .gallery .imgs button:disabled {
+  opacity: 0.7;
 }
 .upload .page .popup {
   position: fixed;
@@ -815,7 +836,7 @@ footer a {
   background-color: transparent;
   color: #000;
 }
-.upload .page .popup .content .btns button:hover, .upload .page .popup .content .btns button:focus, .upload .page .popup .content .btns button:disabled {
+.upload .page .popup .content .btns button:hover, .upload .page .popup .content .btns button:disabled {
   opacity: 0.6;
 }
 
