@@ -34,6 +34,14 @@ button {
   color: inherit;
 }
 
+html:lang(ta) .landing .container .content h1 {
+  font-size: 60px;
+}
+html:lang(ta) .landing .container .content p,
+html:lang(ta) .landing .container .content button {
+  font-size: 20px;
+}
+
 header {
   display: flex;
   align-items: center;
@@ -190,6 +198,52 @@ header .links ul li:not(:last-child):not(:nth-last-child(2))::after {
   height: 40%;
   border-radius: 4px;
   background-color: var(--gray2);
+}
+header .locale {
+  position: absolute;
+  top: 10px;
+  right: 0;
+  font-size: 14px;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+  text-transform: uppercase;
+}
+header .locale.open .btn {
+  border-radius: 4px 0 0 0;
+}
+header .locale.open .options {
+  height: auto;
+  opacity: 1;
+  pointer-events: initial;
+}
+header .locale .btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px 10px;
+  background-color: var(--white);
+  border-radius: 4px 0 0 4px;
+  cursor: pointer;
+}
+header .locale .btn svg {
+  width: 15px;
+}
+header .locale .options {
+  background-color: white;
+  text-align: center;
+  border-radius: 0 0 4px 4px;
+  cursor: default;
+  height: 0;
+  opacity: 0;
+  pointer-events: none;
+}
+header .locale .options li {
+  border-top: 1px solid var(--gray3);
+  padding: 5px 10px;
+}
+header .locale .options:hover {
+  background-color: var(--gray3);
 }
 
 @keyframes fade-in {
@@ -849,13 +903,14 @@ footer a {
     height: 50px;
   }
 }
-@media (max-width: 1300px) {
+@media (max-width: 1450px) {
   header {
     height: 100px;
     padding-bottom: 0;
   }
-  header .logo h1 {
-    font-size: 20px;
+  header .logo svg {
+    width: 200px;
+    height: auto;
   }
   header .info {
     display: none;
@@ -896,6 +951,13 @@ footer a {
   }
 }
 @media (max-width: 1000px) {
+  html:lang(ta) .landing .container .content h1 {
+    font-size: 40px;
+  }
+  html:lang(ta) .landing .container .content p,
+  html:lang(ta) .landing .container .content button {
+    font-size: 18px;
+  }
   header .links {
     display: none;
     opacity: 0;
@@ -905,6 +967,15 @@ footer a {
     display: flex;
     opacity: 1;
     pointer-events: initial;
+  }
+  header .locale {
+    right: 0px;
+    top: -2px;
+    box-shadow: 0px 2px 14px rgba(0, 0, 0, 0.25);
+  }
+  header .locale .btn {
+    border-radius: 4px;
+    padding: 0px 5px;
   }
   .landing .bg-block {
     -webkit-clip-path: polygon(75% 0, 100% 0%, 100% 100%, 5% 100%);
@@ -1064,6 +1135,13 @@ footer a {
   }
 }
 @media (max-width: 600px) {
+  html:lang(ta) .landing .container .content h1 {
+    font-size: 35px;
+  }
+  html:lang(ta) .landing .container .content p,
+  html:lang(ta) .landing .container .content button {
+    font-size: 16px;
+  }
   .landing {
     padding: 0;
   }

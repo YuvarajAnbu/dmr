@@ -1,5 +1,87 @@
-//nav-links on mobile
+//i18n
+const selectContainer = document.querySelector(".locale");
+const selectBtn = document.querySelector(".locale .btn");
+const selectBtnSpan = document.querySelector(".locale .btn span");
+const optionsContainer = document.querySelector(".locale .options");
 
+const locales = ["en", "ta"]; //supported locales
+let locale = "ta"; //current locale
+
+// When the page content is ready...
+document.addEventListener("DOMContentLoaded", () => {
+  // Translate the page to the default locale or locale saved in local-storage
+  let sLocale = localStorage.getItem("locale");
+  if (sLocale) locale = sLocale;
+
+  //populate options on locale dropdown
+  locales.forEach((el) => {
+    if (el === locale) {
+      selectBtnSpan.innerText = locale;
+    } else {
+      let option = document.createElement("li");
+      option.innerText = el;
+      optionsContainer.append(option);
+    }
+  });
+
+  translate();
+});
+
+async function translate() {
+  try {
+    //saving selected locale to cookie
+    localStorage.setItem("locale", locale);
+    document.documentElement.lang = locale;
+
+    // loading json file
+    const resp = await fetch(`/lang/${locale}.json`);
+    const translations = await resp.json();
+
+    //getting all element with attributes
+    document.querySelectorAll("[data-i18n-key]").forEach((el) => {
+      //getting its key
+      const key = el.getAttribute("data-i18n-key");
+      //getting translation text
+      const translation = translations[key];
+      //populating translation
+      el.innerText = translation;
+    });
+
+    //getting all element with placeholder attributes
+    document.querySelectorAll("[data-i18n-key-ph]").forEach((el) => {
+      //getting its key
+      const key = el.getAttribute("data-i18n-key-ph");
+      //getting translation text
+      const translation = translations[key];
+      //populating translation
+      el.placeholder = `${translation} ${el.required ? "*" : ""}`;
+    });
+  } catch (err) {
+    console.log(err);
+  }
+}
+
+selectBtn.addEventListener("click", () => {
+  selectContainer.classList.toggle("open");
+});
+
+selectContainer.addEventListener("blur", (e) => {
+  selectContainer.classList.remove("open");
+});
+
+optionsContainer.addEventListener("click", (e) => {
+  //setting locale
+  locale = e.target.innerHTML.trim();
+  //changing span and clicked options innertext
+  e.target.innerHTML = selectBtnSpan.innerHTML;
+  selectBtnSpan.innerHTML = locale;
+  selectContainer.classList.remove("open");
+
+  //translating
+  translate();
+});
+
+//nav-links on mobile
 const ham = document.querySelector("header .ham");
 const navLinks = document.querySelectorAll("nav ul li");
 
@@ -103,8 +185,8 @@ closeBtn.addEventListener("click", () => {
   if (gSwiper) gSwiper.destroy();
 });
 
-const url = "/.netlify/functions/fetchImages";
-// const url = "http://localhost:3000/img";
+// const url = "/.netlify/functions/fetchImages";
+const url = "http://localhost:3000/img";
 const limit = 12; // number of results per page
 const cloudName = "xander-ecommerce";
 let page = 0; // cursor for pagination, empty string for the first page
