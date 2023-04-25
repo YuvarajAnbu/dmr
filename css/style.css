@@ -24,6 +24,7 @@ body {
   background-color: var(--bg-color);
   font-family: "Inter", sans-serif;
   max-width: 1920px;
+  margin: auto;
 }
 
 li {
@@ -36,6 +37,7 @@ button {
 
 html:lang(ta) .landing .container .content h1 {
   font-size: 60px;
+  line-height: 1.3em;
 }
 html:lang(ta) .landing .container .content p,
 html:lang(ta) .landing .container .content button {
@@ -299,7 +301,7 @@ header .locale .options:hover {
   position: absolute;
   top: 0;
   left: 0;
-  background-color: rgba(0, 0, 0, 0.64);
+  background-color: rgba(0, 0, 0, 0.65);
   width: 100%;
   height: 100%;
 }
@@ -348,6 +350,7 @@ header .locale .options:hover {
   font-size: 80px;
   font-weight: 800;
   line-height: 1em;
+  text-shadow: 4px 4px 7px rgba(0, 0, 0, 0.25);
 }
 .landing .container .content p {
   font-size: 22px;
@@ -1160,11 +1163,28 @@ footer a {
   .landing .container .content button {
     padding: 15px 20px;
   }
+  .about .content {
+    text-align: left;
+  }
+  .about .content h1::after {
+    margin-left: 0;
+    margin-right: 0;
+  }
+  .what {
+    text-align: left;
+  }
   .what .container {
     flex-direction: column;
   }
   .what .container .content {
     flex: 1;
+  }
+  .what .container .content .top svg {
+    margin-left: 20px;
+  }
+  .what .container .content .top h3::after {
+    margin-left: 0;
+    margin-right: 0;
   }
   .gallery .imgs {
     --img-width: 150px;

@@ -24,6 +24,7 @@ body {
   background-color: var(--bg-color);
   font-family: "Inter", sans-serif;
   max-width: 1920px;
+  margin: auto;
 }
 
 li {
@@ -40,6 +41,7 @@ html:lang(ta) {
       .content {
         h1 {
           font-size: 60px;
+          line-height: 1.3em;
         }
         p,
         button {
@@ -352,7 +354,7 @@ header {
           position: absolute;
           top: 0;
           left: 0;
-          background-color: rgba(0, 0, 0, 0.64);
+          background-color: rgba(0, 0, 0, 0.65);
           width: 100%;
           height: 100%;
         }
@@ -407,6 +409,7 @@ header {
         font-size: 80px;
         font-weight: 800;
         line-height: 1em;
+        text-shadow: 4px 4px 7px rgba(0, 0, 0, 0.25);
       }
       p {
         font-size: 22px;
@@ -1399,12 +1402,37 @@ footer {
     }
   }
 
+  .about {
+    .content {
+      text-align: left;
+      h1 {
+        &::after {
+          margin-left: 0;
+          margin-right: 0;
+        }
+      }
+    }
+  }
+
   .what {
+    text-align: left;
     .container {
       flex-direction: column;
 
       .content {
         flex: 1;
+
+        .top {
+          svg {
+            margin-left: 20px;
+          }
+          h3 {
+            &::after {
+              margin-left: 0;
+              margin-right: 0;
+            }
+          }
+        }
       }
     }
   }

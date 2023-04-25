@@ -185,8 +185,8 @@ closeBtn.addEventListener("click", () => {
   if (gSwiper) gSwiper.destroy();
 });
 
-// const url = "/.netlify/functions/fetchImages";
-const url = "http://localhost:3000/img";
+const url = "/.netlify/functions/fetchImages";
+// const url = "http://localhost:3000/img";
 const limit = 12; // number of results per page
 const cloudName = "xander-ecommerce";
 let page = 0; // cursor for pagination, empty string for the first page
@@ -214,6 +214,13 @@ async function fetchImages() {
       };
       const img = document.createElement("img");
       img.src = `https://res.cloudinary.com/${cloudName}/image/upload/c_fill,w_300,h_300/${el.public_id}.${el.format}`;
+
+      //secset for different resolutions
+      img.srcset = `
+      https://res.cloudinary.com/${cloudName}/image/upload/c_fill,w_300,h_300/${el.public_id}.${el.format},
+      https://res.cloudinary.com/${cloudName}/image/upload/c_fill,w_600,h_600/${el.public_id}.${el.format} 2x,
+      https://res.cloudinary.com/${cloudName}/image/upload/c_fill,w_900,h_900/${el.public_id}.${el.format} 3x,
+      `;
       img.alt = "";
       div.append(img);
       imgs.append(div);
@@ -221,9 +228,10 @@ async function fetchImages() {
       gSwiperWrapper.insertAdjacentHTML(
         "beforeend",
         `<div class="swiper-slide"><img
-      src=${`https://res.cloudinary.com/xander-ecommerce/image/upload/c_fit,w_800,h_800/${el.public_id}.${el.format}`}
+      src="https://res.cloudinary.com/xander-ecommerce/image/upload/c_fit,w_1400,h_800/${el.public_id}.${el.format}"
       alt=""
-      srcset=""
+      srcset=
+      "https://res.cloudinary.com/xander-ecommerce/image/upload/c_fit,w_600,h_800/${el.public_id}.${el.format} 600w, https://res.cloudinary.com/xander-ecommerce/image/upload/c_fit,w_1000,h_800/${el.public_id}.${el.format} 1000w, https://res.cloudinary.com/xander-ecommerce/image/upload/c_fit,w_1400,h_800/${el.public_id}.${el.format} 1400w"
       loading="lazy"
     /><div class="swiper-lazy-preloader"></div></div>`
       );
