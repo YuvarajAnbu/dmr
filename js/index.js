@@ -8,7 +8,7 @@ const locales = ["en", "ta"]; //supported locales
 let locale = "ta"; //current locale
 
 // When the page content is ready...
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", async () => {
   // Translate the page to the default locale or locale saved in local-storage
   let sLocale = localStorage.getItem("locale");
   if (sLocale) locale = sLocale;
@@ -23,8 +23,9 @@ document.addEventListener("DOMContentLoaded", () => {
       optionsContainer.append(option);
     }
   });
-
-  translate();
+  document.body.classList.add("hide");
+  await translate();
+  document.body.classList.remove("hide");
 });
 
 async function translate() {
