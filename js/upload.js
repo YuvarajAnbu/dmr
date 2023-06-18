@@ -22,7 +22,7 @@ const deleteUrl = "/.netlify/functions/deleteImages";
 // const deleteUrl = "http://localhost:3000/delete";
 
 const limit = 12; // number of results per page
-const cloudName = "xander-ecommerce";
+const cloudName = "dmr-contractors";
 let page = 0; // cursor for pagination, empty string for the first page
 let next_cursor = "";
 
@@ -103,7 +103,7 @@ function populate(uploadPreset) {
   //upload widget
   const widget = cloudinary.createUploadWidget(
     {
-      cloudName: "xander-ecommerce",
+      cloudName: "dmr-contractors",
       uploadPreset: uploadPreset,
       sources: ["local", "url", "camera"],
       showAdvancedOptions: false,

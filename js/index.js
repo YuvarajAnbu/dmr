@@ -29,13 +29,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
 async function translate() {
   try {
-    //saving selected locale to cookie
-    localStorage.setItem("locale", locale);
-    document.documentElement.lang = locale;
-
     // loading json file
     const resp = await fetch(`/lang/${locale}.json`);
     const translations = await resp.json();
+
+    //saving selected locale to cookie
+    localStorage.setItem("locale", locale);
+    document.documentElement.lang = locale;
 
     //getting all element with attributes
     document.querySelectorAll("[data-i18n-key]").forEach((el) => {
@@ -188,7 +188,7 @@ closeBtn.addEventListener("click", () => {
 const url = "/.netlify/functions/fetchImages";
 // const url = "http://localhost:3000/img";
 const limit = 12; // number of results per page
-const cloudName = "xander-ecommerce";
+const cloudName = "dmr-contractors";
 let page = 0; // cursor for pagination, empty string for the first page
 let next_cursor = "";
 
@@ -228,10 +228,10 @@ async function fetchImages() {
       gSwiperWrapper.insertAdjacentHTML(
         "beforeend",
         `<div class="swiper-slide"><img
-      src="https://res.cloudinary.com/xander-ecommerce/image/upload/c_fit,w_1400,h_800/${el.public_id}.${el.format}"
+      src="https://res.cloudinary.com/${cloudName}/image/upload/c_fit,w_1400,h_800/${el.public_id}.${el.format}"
       alt=""
       srcset=
-      "https://res.cloudinary.com/xander-ecommerce/image/upload/c_fit,w_600,h_800/${el.public_id}.${el.format} 600w, https://res.cloudinary.com/xander-ecommerce/image/upload/c_fit,w_1000,h_800/${el.public_id}.${el.format} 1000w, https://res.cloudinary.com/xander-ecommerce/image/upload/c_fit,w_1400,h_800/${el.public_id}.${el.format} 1400w"
+      "https://res.cloudinary.com/${cloudName}/image/upload/c_fit,w_600,h_800/${el.public_id}.${el.format} 600w, https://res.cloudinary.com/${cloudName}/image/upload/c_fit,w_1000,h_800/${el.public_id}.${el.format} 1000w, https://res.cloudinary.com/${cloudName}/image/upload/c_fit,w_1400,h_800/${el.public_id}.${el.format} 1400w"
       loading="lazy"
     /><div class="swiper-lazy-preloader"></div></div>`
       );
