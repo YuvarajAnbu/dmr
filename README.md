@@ -1,4 +1,4 @@
-# DMR Contractors Website
+# DMR Contractors
 
 Designed and developed a Website for DMR Contractors. <br>
 [dmrcontractors.in](https://dmrcontractors.in)
