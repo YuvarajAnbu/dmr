@@ -607,6 +607,11 @@ header {
     cursor: pointer;
     position: relative;
 
+    &:disabled {
+      opacity: 0.4;
+      pointer-events: none;
+    }
+
     svg {
       width: 20px;
     }

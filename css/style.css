@@ -528,6 +528,10 @@ header .locale .options:hover {
   cursor: pointer;
   position: relative;
 }
+.gallery .more-btn:disabled {
+  opacity: 0.4;
+  pointer-events: none;
+}
 .gallery .more-btn svg {
   width: 20px;
 }

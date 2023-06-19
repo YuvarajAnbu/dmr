@@ -239,7 +239,11 @@ async function fetchImages() {
     });
 
     page++;
-    next_cursor = data.next_cursor;
+    if (data.next_cursor) {
+      next_cursor = data.next_cursor;
+    } else {
+      moreBtn.disabled = true;
+    }
   } catch (err) {
     console.log(err);
   }

@@ -13,13 +13,13 @@ function showMsg(text, err) {
   }, 1500);
 }
 
-const loginUrl = "/.netlify/functions/login";
-const fetchUrl = "/.netlify/functions/fetchImages";
-const deleteUrl = "/.netlify/functions/deleteImages";
+// const loginUrl = "/.netlify/functions/login";
+// const fetchUrl = "/.netlify/functions/fetchImages";
+// const deleteUrl = "/.netlify/functions/deleteImages";
 
-// const loginUrl = "http://localhost:3000/login";
-// const fetchUrl = "http://localhost:3000/img";
-// const deleteUrl = "http://localhost:3000/delete";
+const loginUrl = "http://localhost:3000/login";
+const fetchUrl = "http://localhost:3000/img";
+const deleteUrl = "http://localhost:3000/delete";
 
 const limit = 12; // number of results per page
 const cloudName = "dmr-contractors";
@@ -93,7 +93,7 @@ form.addEventListener("submit", async (e) => {
     button.disabled = false;
   } catch (err) {
     button.disabled = false;
-    console.log(err, "jh");
+    console.log(err);
     showMsg(err.message, true);
   }
 });
@@ -246,7 +246,11 @@ async function fetchImages() {
     });
 
     page++;
-    next_cursor = data.next_cursor;
+    if (data.next_cursor) {
+      next_cursor = data.next_cursor;
+    } else {
+      moreBtn.disabled = true;
+    }
   } catch (err) {
     console.log(err);
   }
